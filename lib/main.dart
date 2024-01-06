@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/screens/categories.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:meals_app/models/theme.dart';
-import 'package:meals_app/screens/meals.dart';
-import 'package:meals_app/data/meal_data.dart';
 import 'package:meals_app/screens/tabs.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp (const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

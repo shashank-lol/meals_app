@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:meals_app/screens/filters.dart';
+import 'package:meals_app/provider/filters_provider.dart';
 
-class FilterSwitchTile extends StatefulWidget {
+class FilterSwitchTile extends ConsumerStatefulWidget {
   FilterSwitchTile(
       {super.key,
       required this.switchFilter,
       required this.title,
       required this.subtitle,
-      required this.filterMap,
       required this.filter});
 
   final String title;
   final String subtitle;
   bool switchFilter;
-  final Map<Filter,bool> filterMap;
   final Filter filter;
 
   @override
-  State<FilterSwitchTile> createState() => _FilterSwitchTileState();
+  ConsumerState<FilterSwitchTile> createState() => _FilterSwitchTileState();
 }
 
-class _FilterSwitchTileState extends State<FilterSwitchTile> {
-
+class _FilterSwitchTileState extends ConsumerState<FilterSwitchTile> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
@@ -30,7 +28,9 @@ class _FilterSwitchTileState extends State<FilterSwitchTile> {
       onChanged: (isTrue) {
         setState(() {
           widget.switchFilter = isTrue;
-          widget.filterMap[widget.filter] = isTrue;
+          ref
+              .read(filtersProvider.notifier)
+              .setFilter(widget.filter, widget.switchFilter);
         });
       },
       title: Text(
