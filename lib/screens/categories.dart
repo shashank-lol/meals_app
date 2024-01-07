@@ -21,7 +21,6 @@ class _CategoriesScreenState extends State<CategoriesScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
@@ -30,7 +29,6 @@ class _CategoriesScreenState extends State<CategoriesScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _animationController.dispose();
     super.dispose();
   }
